@@ -6,7 +6,7 @@ public class dtProducto {
     private String categoría;
     private String nombre;
     private String descripcion;
-    private String foto;
+    private String idFoto;
     private int precio;
 
     public dtProducto()
@@ -15,7 +15,7 @@ public class dtProducto {
         this.categoría = "";
         this.nombre = "";
         this.descripcion = "";
-        this.foto = "";
+        this.idFoto = "";
         this.precio = 0;
     }
 
@@ -24,7 +24,7 @@ public class dtProducto {
         this.categoría = categoría;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.foto = foto;
+        this.idFoto = foto;
         this.precio = precio;
     }
 
@@ -60,12 +60,12 @@ public class dtProducto {
         this.descripcion = descripcion;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getIdFoto() {
+        return idFoto;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setIdFoto(String idFoto) {
+        this.idFoto = idFoto;
     }
 
     public int getPrecio() {
