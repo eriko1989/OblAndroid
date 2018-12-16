@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import net.eoapp.obligatorioandroid.Data.DataProducto;
+import net.eoapp.obligatorioandroid.Data.GenericAdapter;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
 import java.util.List;
@@ -81,7 +82,18 @@ public class ProductosFragment extends Fragment {
 
     void onCatSelected(String cat) {
         List<dtProducto> productos = DataProducto.getProductos(getActivity(),cat);
-        ArrayAdapter<dtProducto> adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,productos);
+
+        GenericAdapter adapter = new GenericAdapter(getActivity(), R.layout.item_producto_list, productos);
+
+
+        Class c = dtProducto.class;
+        try {
+
+            adapter.setMethodReference(R.id.tvNombreProducto, c.getMethod("getNombre"));
+            adapter.setMethodReference(R.id.tvPrecioProducto, c.getMethod("getPrecio"));
+        }
+        catch (Exception e){}
+
         lvProductos.setAdapter(adapter);
 
     }
