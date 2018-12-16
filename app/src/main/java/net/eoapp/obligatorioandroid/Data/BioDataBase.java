@@ -27,7 +27,7 @@ public final class BioDataBase{
         //public static final String[] COLUMNAS = { COL_CODIGO, COL_CATEGORIA, COL_NOMBRE, COL_DESCRIPCION, COL_ID_FOTO, COL_PRECIO};
 
         public static final String CREAR_TABLA = new StringBuilder("CREATE TABLE ").append(PRODUCTO).append(" (")
-                                                    .append(COL_CODIGO).append(" INTEGER NOT NUL PRIMARY KEY AUTOINCREMENT, ")
+                                                    .append(COL_CODIGO).append(" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ")
                                                     .append(COL_CATEGORIA).append(" VARCHAR(50) NOT NULL, ")
                                                     .append(COL_NOMBRE).append(" VARCHAR(100) NOT NULL, ")
                                                     .append(COL_DESCRIPCION).append(" VARCHAR(300) NOT NULL, ")
@@ -54,7 +54,7 @@ public final class BioDataBase{
 
 
         public static final String CREAR_TABLA = new StringBuilder("CREATE TABLE ").append(PEDIDO).append(" (")
-                .append(_ID).append(" INTEGER NOT NUL PRIMARY KEY AUTOINCREMENT, ")
+                .append(_ID).append(" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ")
                 .append(COL_ID_PRODUCTO).append(" INTEGER NOT NULL, ")
                 .append(COL_CANTIDAD).append(" INTEGER NOT NULL, ")
                 .append(COL_TOTAL).append(" DOUBLE NOT NULL, ")
