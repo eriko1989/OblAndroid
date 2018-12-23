@@ -6,8 +6,8 @@ public class dtProducto {
     private String categoría;
     private String nombre;
     private String descripcion;
-    private String idFoto;
-    private int precio;
+    private int  idFoto;
+    private  double precio;
 
     public dtProducto()
     {
@@ -15,11 +15,11 @@ public class dtProducto {
         this.categoría = "";
         this.nombre = "";
         this.descripcion = "";
-        this.idFoto = "";
+        this.idFoto = -1;
         this.precio = 0;
     }
 
-    public dtProducto(int idProducto, String categoría, String nombre, String descripcion, String foto, int precio) {
+    public dtProducto(int idProducto, String categoría, String nombre, String descripcion, int foto, double precio) {
         this.idProducto = idProducto;
         this.categoría = categoría;
         this.nombre = nombre;
@@ -60,19 +60,24 @@ public class dtProducto {
         this.descripcion = descripcion;
     }
 
-    public String getIdFoto() {
+    public int getIdFoto() {
         return idFoto;
     }
 
-    public void setIdFoto(String idFoto) {
+    public void setIdFoto(int idFoto) {
         this.idFoto = idFoto;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    @Override
+    public String toString() {
+        return getIdProducto() + " - " + getNombre();
     }
 }

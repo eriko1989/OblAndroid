@@ -4,7 +4,7 @@ public class dtPedido {
 
     dtProducto elProducto;
     int cantidad;
-    int total;
+    double total;
     boolean entregado;
     boolean prepagado;
     String cliente;
@@ -46,11 +46,11 @@ public class dtPedido {
         this.cantidad = cantidad;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 

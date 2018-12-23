@@ -27,8 +27,8 @@ public class BioOpenHelper extends SQLiteOpenHelper {
 
         /*Generamos los datos de prueba: 10 productos de 3 categoríaS*/
         sqLiteDatabase.execSQL(new StringBuilder("INSERT INTO ").append(BioDataBase.PRODUCTO).append(" VALUES (0,'Cosmeticos','Jabon de la descarga', 'Esta es la descripcion del jabon de la descarga',1,100.10);").toString());
-        sqLiteDatabase.execSQL(new StringBuilder("INSERT INTO ").append(BioDataBase.PRODUCTO).append(" VALUES (1,'Cosmeticos','Jabon de la descarga', 'Esta es la descripcion del jabon de la descarga',1,100.10);").toString());
-        sqLiteDatabase.execSQL(new StringBuilder("INSERT INTO ").append(BioDataBase.PRODUCTO).append(" VALUES (2,'Cosmeticos','Jabon de la descarga', 'Esta es la descripcion del jabon de la descarga',1,100.10);").toString());
+        sqLiteDatabase.execSQL(new StringBuilder("INSERT INTO ").append(BioDataBase.PRODUCTO).append(" VALUES (1,'Labiales','Jabon de la descarga', 'Esta es la descripcion del jabon de la descarga',1,100.10);").toString());
+        sqLiteDatabase.execSQL(new StringBuilder("INSERT INTO ").append(BioDataBase.PRODUCTO).append(" VALUES (2,'Ropa interior','Jabon de la descarga', 'Esta es la descripcion del jabon de la descarga',1,100.10);").toString());
 
 
     }
