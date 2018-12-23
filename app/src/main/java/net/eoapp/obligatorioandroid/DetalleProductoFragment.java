@@ -3,5 +3,5 @@ import android.app.Fragment;
 
 public class DetalleProductoFragment extends Fragment {
 
-
+// comentarior
 }
