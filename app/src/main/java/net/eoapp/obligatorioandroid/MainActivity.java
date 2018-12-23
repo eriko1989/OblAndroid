@@ -25,9 +25,8 @@ public class MainActivity extends AppCompatActivity implements  ProductosFragmen
 
     @Override
     public void onProductoSelected(dtProducto producto) {
-        Intent i = new Intent(getApplicationContext(), DetalleProductoFragment.class); //Intent para levantar la activity del detalle
+        Intent i = new Intent(getApplicationContext(), activityDetalleProducto.class);
         i.putExtra(PRODUCTO_SELECTED, producto);
-
         startActivity(i);
     }
 
