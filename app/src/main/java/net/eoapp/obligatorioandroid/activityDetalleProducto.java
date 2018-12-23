@@ -22,11 +22,14 @@ public class activityDetalleProducto extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         producto = (dtProducto)extras.getSerializable(MainActivity.PRODUCTO_SELECTED);
-        if(producto != null)
-        frgDetalleProducto.setProducto(producto);
+
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-
+        if(producto != null) frgDetalleProducto.setProducto(producto);
+    }
 }
