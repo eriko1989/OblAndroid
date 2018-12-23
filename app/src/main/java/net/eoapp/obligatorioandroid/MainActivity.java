@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements  ProductosFragmen
 
     public static final String PRODUCTO_SELECTED = "PRODUCTO_SELECTED";
     ProductosFragment productosFragment;
+    DetalleProductoFragment detalleFragment;
 
 
     @Override
@@ -20,14 +21,20 @@ public class MainActivity extends AppCompatActivity implements  ProductosFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         productosFragment = (ProductosFragment)getSupportFragmentManager().findFragmentById(R.id.fgMain);
+        detalleFragment = (DetalleProductoFragment)getSupportFragmentManager().findFragmentById(R.id.fgDetaleCompra);
     }
 
 
     @Override
     public void onProductoSelected(dtProducto producto) {
-        Intent i = new Intent(getApplicationContext(), activityDetalleProducto.class);
-        i.putExtra(PRODUCTO_SELECTED, producto);
-        startActivity(i);
+        if (detalleFragment == null || !detalleFragment.isAdded()){
+            Intent i = new Intent(getApplicationContext(), activityDetalleProducto.class);
+            i.putExtra(PRODUCTO_SELECTED, producto);
+            startActivity(i);
+        }
+        else{
+            detalleFragment.mostrarProducto(producto);
+        }
     }
 
 
