@@ -1,6 +1,8 @@
 package net.eoapp.obligatorioandroid.EntidadesCompartidas;
 
-public class dtProducto {
+import java.io.Serializable;
+
+public class dtProducto implements Serializable {
 
     private int idProducto;
     private String categoría;

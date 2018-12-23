@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,23 +19,35 @@ public class GenericAdapter<T> extends BaseAdapter
 {
     private Context context = null;
     private List<T> objetos = null;
+    private Class c;
 
     int layout = 0;
 
     Map<Integer, Method> metodos = null;
 
-    public GenericAdapter(Context context, int layout, List<T> objetos){
-        this.context = context;
-        this.objetos = objetos;
+    public GenericAdapter(Context context, int layout, List<T> objetos, Class type) throws Exception{
+        try {
+            this.context = context;
+            this.objetos = objetos;
 
-        this.layout = layout;
+            this.layout = layout;
+            c = type;
 
-        metodos = new HashMap();
+            metodos = new HashMap();
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
     }
 
-    public void setMethodReference(int view, Method method){
-        if (!metodos.containsKey(view)){
-            metodos.put(view, method);
+    public void setMethodReference(int view, String method) throws Exception{
+        try{
+            if (!metodos.containsKey(view))
+                metodos.put(view, c.getMethod(method));
+        }
+        catch (Exception e){
+            throw e;
         }
     }
 

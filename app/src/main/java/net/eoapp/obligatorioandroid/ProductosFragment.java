@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import net.eoapp.obligatorioandroid.Data.DataProducto;
 import net.eoapp.obligatorioandroid.Data.GenericAdapter;
@@ -61,10 +62,10 @@ public class ProductosFragment extends Fragment {
         lvProductos = getActivity().findViewById(R.id.lvProductos);
         categrias = DataProducto.getCategorias(getActivity());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, categrias);
-
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, categrias);
         spinner.setAdapter(adapter);
 
+        //Evento de selección de uno de los items del spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -77,30 +78,34 @@ public class ProductosFragment extends Fragment {
             }
         });
 
+        //Evento click en cada item del listView
+        lvProductos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listener.onProductoSelected((dtProducto)parent.getItemAtPosition(position));
+            }
+        });
     }
 
 
     void onCatSelected(String cat) {
-        List<dtProducto> productos = DataProducto.getProductos(getActivity(),cat);
-
-        GenericAdapter adapter = new GenericAdapter(getActivity(), R.layout.item_producto_list, productos);
-
-
-        Class c = dtProducto.class;
         try {
+            List<dtProducto> productos = DataProducto.getProductos(getActivity(),cat);
+            GenericAdapter adapter = new GenericAdapter<dtProducto>(getActivity(), R.layout.item_producto_list, productos, dtProducto.class);
 
-            adapter.setMethodReference(R.id.tvNombreProducto, c.getMethod("getNombre"));
-            adapter.setMethodReference(R.id.tvPrecioProducto, c.getMethod("getPrecio"));
+            adapter.setMethodReference(R.id.tvNombreProducto, "getNombre");
+            adapter.setMethodReference(R.id.tvPrecioProducto, "getPrecio");
+
+            lvProductos.setAdapter(adapter);
         }
-        catch (Exception e){}
-
-        lvProductos.setAdapter(adapter);
+        catch (Exception e){
+            Toast.makeText(getActivity(), "Ocurrió un error al cargar los productos", Toast.LENGTH_LONG).show();
+        }
 
     }
 
     public interface OnProductoSelectedListener{
         void onProductoSelected(dtProducto producto);
-
     }
 
 }
