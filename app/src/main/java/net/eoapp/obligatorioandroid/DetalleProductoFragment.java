@@ -3,12 +3,22 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
+
+import org.w3c.dom.Text;
 
 public class DetalleProductoFragment extends Fragment {
 
     protected  dtProducto producto = null;
+    TextView tvCodigo ;
+    TextView tvNombre ;
+    TextView tvCategoria ;
+    TextView tvDescripcion ;
+    TextView tvPrecio;
+    ImageView ivFoto;
+
 
     @Override
     public void onAttachFragment(Fragment childFragment) {
@@ -25,11 +35,27 @@ public class DetalleProductoFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    public dtProducto getProducto() {
-        return producto;
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        tvCodigo = (TextView)getView().findViewById(R.id.tvCodigo);
+        tvCategoria = (TextView)getView().findViewById(R.id.tvCategoria);
+        tvDescripcion = (TextView)getView().findViewById(R.id.tvDescripcion);
+        tvNombre = (TextView)getView().findViewById(R.id.tvNombre);
+        tvPrecio = (TextView)getView().findViewById(R.id.tvPrecio);
+        ivFoto = (ImageView)getView().findViewById(R.id.ivImagen);
     }
 
-    public void setProducto(dtProducto producto) {
+    public void mostrarProducto(dtProducto producto) {
         this.producto = producto;
+        tvCodigo.setText(String.valueOf(producto.getIdProducto()));
+        tvCategoria.setText(producto.getCategoría());
+        tvDescripcion.setText(producto.getDescripcion());
+        tvNombre.setText(producto.getNombre());
+        tvPrecio.setText(String.valueOf(producto.getPrecio()));
+        // cargar imagen
+
     }
 }
