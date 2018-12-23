@@ -30,6 +30,6 @@ public class activityDetalleProducto extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if(producto != null) frgDetalleProducto.setProducto(producto);
+        if(producto != null) frgDetalleProducto.mostrarProducto(producto);
     }
 }
