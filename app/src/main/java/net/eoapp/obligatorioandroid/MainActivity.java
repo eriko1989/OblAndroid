@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements  ProductosFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         productosFragment = (ProductosFragment)getSupportFragmentManager().findFragmentById(R.id.fgMain);
     }
 
