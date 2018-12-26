@@ -11,7 +11,7 @@ import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
 import java.io.FileReader;
 
-public class activityDetalleProducto extends AppCompatActivity {
+public class activityDetalleProducto extends AppCompatActivity implements DetalleProductoFragment.btnComprarInterface{
 
     dtProducto producto;
     DetalleProductoFragment frgDetalleProducto;
@@ -54,4 +54,10 @@ public class activityDetalleProducto extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onCompraClick(dtProducto producto) {
+
+        frgCompraProducto.setProducto(producto);
+        this.changeFragment(Constantes.COMPRA_PRODUCTO, true);
+    }
 }
