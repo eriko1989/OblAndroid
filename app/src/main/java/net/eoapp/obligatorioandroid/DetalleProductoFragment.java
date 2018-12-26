@@ -1,4 +1,5 @@
 package net.eoapp.obligatorioandroid;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,11 +29,11 @@ public class DetalleProductoFragment extends Fragment {
     btnComprarInterface listener;
 
     @Override
-    public void onAttachFragment(Fragment childFragment) {
-        super.onAttachFragment(childFragment);
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
-        if (getActivity() instanceof btnComprarInterface){
-            listener = (btnComprarInterface)getActivity();
+        if (context instanceof btnComprarInterface){
+            listener = (btnComprarInterface)context;
         }
     }
 
