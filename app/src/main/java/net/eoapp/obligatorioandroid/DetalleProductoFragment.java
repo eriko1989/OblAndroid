@@ -25,11 +25,15 @@ public class DetalleProductoFragment extends Fragment {
     TextView tvPrecio;
     ImageView ivFoto;
     Button btnComprar;
-
+    btnComprarInterface listener;
 
     @Override
     public void onAttachFragment(Fragment childFragment) {
         super.onAttachFragment(childFragment);
+
+        if (getActivity() instanceof btnComprarInterface){
+            listener = (btnComprarInterface)getActivity();
+        }
     }
 
     @Override
@@ -63,11 +67,17 @@ public class DetalleProductoFragment extends Fragment {
         btnComprar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activityDetalleProducto a = (activityDetalleProducto)getActivity();
-                a.changeFragment(Constantes.COMPRA_PRODUCTO, true);
+                listener.onCompraClick(producto);
 
             }
         });
+
+    }
+
+    public interface btnComprarInterface{
+
+            void onCompraClick(dtProducto producto);
+
     }
 
     public void mostrarProducto(dtProducto producto) {

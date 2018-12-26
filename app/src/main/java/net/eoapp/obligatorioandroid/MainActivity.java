@@ -1,6 +1,7 @@
 package net.eoapp.obligatorioandroid;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import net.eoapp.obligatorioandroid.Data.BioOpenHelper;
@@ -16,18 +18,23 @@ import net.eoapp.obligatorioandroid.EntidadesCompartidas.Constantes;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
 
-public class MainActivity extends AppCompatActivity implements  ProductosFragment.OnProductoSelectedListener {
+public class MainActivity extends AppCompatActivity implements  ProductosFragment.OnProductoSelectedListener, DetalleProductoFragment.btnComprarInterface {
 
     ProductosFragment productosFragment;
     DetalleProductoFragment detalleFragment;
-
+    CompraProductoFragment frgCompraProducto;
+    Button btnComprar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         productosFragment = (ProductosFragment) getSupportFragmentManager().findFragmentById(R.id.fgMain);
-        detalleFragment = (DetalleProductoFragment) getSupportFragmentManager().findFragmentById(R.id.fgDetaleCompra);
+        detalleFragment = new DetalleProductoFragment();
+        frgCompraProducto = new CompraProductoFragment();
+
+        changeFragment(Constantes.DETALLE_PRODUCTO, false);
+
     }
 
 
@@ -64,5 +71,24 @@ public class MainActivity extends AppCompatActivity implements  ProductosFragmen
     }
 
 
+    public void changeFragment(String constante, boolean addToBackStack)
+    {
+        Fragment fragmentToView = Constantes.COMPRA_PRODUCTO == constante ? frgCompraProducto : detalleFragment;
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.replace(R.id.frlZonaIntercambioMain, fragmentToView);
+        if (addToBackStack) {
+            transaction.addToBackStack(fragmentToView.getClass().getSimpleName());
+        }
 
+        transaction.commit();
+    }
+
+
+    @Override
+    public void onCompraClick(dtProducto producto) {
+
+        frgCompraProducto.setProducto(producto);
+        this.changeFragment(Constantes.COMPRA_PRODUCTO, true);
+    }
 }

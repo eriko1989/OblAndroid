@@ -19,13 +19,20 @@
             android:name="net.eoapp.obligatorioandroid.ProductosFragment"
             tools:layout="@layout/fragment_productos"/>
 
+
+        <FrameLayout
+            android:id="@+id/frlZonaIntercambioMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <!--
         <fragment
             android:layout_weight="1.5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/fgDetaleCompra"
             android:name="net.eoapp.obligatorioandroid.DetalleProductoFragment"
-            tools:layout="@layout/fragment_detalle"/>
+            tools:layout="@layout/fragment_detalle"/>-->
 
     </LinearLayout>
 
