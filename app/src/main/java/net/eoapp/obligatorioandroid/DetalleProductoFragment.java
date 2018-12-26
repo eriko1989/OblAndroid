@@ -6,9 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import net.eoapp.obligatorioandroid.EntidadesCompartidas.Constantes;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
 import org.w3c.dom.Text;
@@ -22,6 +24,7 @@ public class DetalleProductoFragment extends Fragment {
     TextView tvDescripcion ;
     TextView tvPrecio;
     ImageView ivFoto;
+    Button btnComprar;
 
 
     @Override
@@ -55,6 +58,16 @@ public class DetalleProductoFragment extends Fragment {
         tvNombre = (TextView)getView().findViewById(R.id.tvNombre);
         tvPrecio = (TextView)getView().findViewById(R.id.tvPrecio);
         ivFoto = (ImageView)getView().findViewById(R.id.ivImagen);
+        btnComprar = (Button)getView().findViewById(R.id.btnComprar);
+
+        btnComprar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activityDetalleProducto a = (activityDetalleProducto)getActivity();
+                a.changeFragment(Constantes.COMPRA_PRODUCTO, true);
+
+            }
+        });
     }
 
     public void mostrarProducto(dtProducto producto) {
@@ -67,4 +80,8 @@ public class DetalleProductoFragment extends Fragment {
         // cargar imagen
 
     }
+
+
+
+
 }
