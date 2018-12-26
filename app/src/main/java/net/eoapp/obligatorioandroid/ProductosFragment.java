@@ -63,8 +63,7 @@ public class ProductosFragment extends Fragment {
         lvProductos = getActivity().findViewById(R.id.lvProductos);
         categrias = DataProducto.getCategorias(getActivity());
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, categrias);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.item_categorias, categrias);
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

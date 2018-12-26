@@ -37,20 +37,21 @@ public final class BioDataBase{
 
         public static final String ELIMINAR_TABLA = new StringBuilder("DROP TABLE IF EXISTS ").append(PRODUCTO).append(" ;").toString();
 
-        public static final String VACIAR_TABLA= new StringBuilder("TRUNCATE TABLE IF EXISTS ").append(PRODUCTO).append(" ;").toString();
+        public static final String VACIAR_TABLA = new StringBuilder("TRUNCATE TABLE IF EXISTS ").append(PRODUCTO).append(" ;").toString();
     }
 
     public static abstract class tblPedido implements BaseColumns {
 
         public static final String COL_ID_PRODUCTO = "IdProducto";
-        public static final String COL_CANTIDAD = "Categoria";
+        public static final String COL_CANTIDAD = "Cantidad";
         public static final String COL_TOTAL = "Total";
         public static final String COL_ENTREGADO = "Entregado";
         public static final String COL_PREPAGADO = "Prepagado";
         public static final String COL_CLIENTE = "Cliente";
+        public static final String COL_FECHA = "Fecha";
 
 
-        public static final String[] COLUMNAS = { _ID, COL_ID_PRODUCTO, COL_CANTIDAD,COL_TOTAL,COL_ENTREGADO,COL_CLIENTE};
+        public static final String[] COLUMNAS = { _ID, COL_ID_PRODUCTO, COL_CANTIDAD,COL_TOTAL,COL_ENTREGADO, COL_PREPAGADO, COL_CLIENTE,COL_FECHA};
 
 
         public static final String CREAR_TABLA = new StringBuilder("CREATE TABLE ").append(PEDIDO).append(" (")
@@ -60,6 +61,8 @@ public final class BioDataBase{
                 .append(COL_TOTAL).append(" DOUBLE NOT NULL, ")
                 .append(COL_ENTREGADO).append(" BIT NOT NULL DEFAULT 0, ")
                 .append(COL_PREPAGADO).append(" BIT NOT NULL DEFAULT 0, ")
+                .append(COL_CLIENTE).append(" VARCHAR(200) NOT NULL, ")
+                .append(COL_FECHA).append(" VARCHAR(20) NOT NULL, ")
                 .append("FOREIGN KEY (").append(COL_ID_PRODUCTO).append(") REFERENCES ").append(PRODUCTO).append("(")
                 .append(tblProducto.COL_CODIGO).append(") ); " ).toString();
 

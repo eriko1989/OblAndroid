@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements  ProductosFragmen
 
         switch (item.getItemId()) {
             case R.id.mniVerPedidos:
-                Toast.makeText(this, "Abrir activity lista pedidos", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), ListadoPedidosActivity.class);
+                startActivity(i);
                 return true;
         }
 

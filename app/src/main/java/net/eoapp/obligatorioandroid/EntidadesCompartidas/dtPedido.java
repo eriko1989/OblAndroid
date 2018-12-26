@@ -1,33 +1,40 @@
 package net.eoapp.obligatorioandroid.EntidadesCompartidas;
 
+import java.util.Date;
+
 public class dtPedido {
 
     dtProducto elProducto;
+    int id;
     int cantidad;
     double total;
     boolean entregado;
     boolean prepagado;
     String cliente;
+    String fecha;
 
     public dtPedido()
     {
+        this.id = 0;
         this.elProducto = new dtProducto();
         this.cantidad = 0;
         this.total = 0;
         this.entregado = false;
         this.prepagado = false;
         this.cliente = "";
+        this.fecha = "";
 
     }
 
-    public dtPedido(dtProducto elProducto, int cantidad, boolean entregado, boolean prepagado, String cliente) {
+    public dtPedido(dtProducto elProducto, int cantidad, boolean entregado, boolean prepagado, String cliente, String fecha, int id, double total) {
+        this.id = 0;
         this.elProducto = elProducto;
         this.cantidad = cantidad;
-        if (elProducto != null)
-        this.total = elProducto.getPrecio() * cantidad;
+        this.total = total;
         this.entregado = entregado;
         this.prepagado = prepagado;
         this.cliente = cliente;
+        this.fecha = fecha;
     }
 
     public dtProducto getElProducto() {
@@ -36,6 +43,14 @@ public class dtPedido {
 
     public void setElProducto(dtProducto elProducto) {
         this.elProducto = elProducto;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getCantidad() {
@@ -76,5 +91,13 @@ public class dtPedido {
 
     public void setCliente(String cliente) {
         this.cliente = cliente;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 }
