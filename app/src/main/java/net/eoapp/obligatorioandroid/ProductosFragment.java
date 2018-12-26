@@ -3,6 +3,7 @@ package net.eoapp.obligatorioandroid;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabaseLockedException;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -62,20 +63,20 @@ public class ProductosFragment extends Fragment {
         lvProductos = getActivity().findViewById(R.id.lvProductos);
         categrias = DataProducto.getCategorias(getActivity());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, categrias);
+        ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, categrias);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
 
-        //Evento de selección de uno de los items del spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            //Evento de selección de uno de los items del spinner
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 onCatSelected(categrias.get(position));
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         //Evento click en cada item del listView
@@ -88,24 +89,39 @@ public class ProductosFragment extends Fragment {
     }
 
 
-    void onCatSelected(String cat) {
-        try {
-            List<dtProducto> productos = DataProducto.getProductos(getActivity(),cat);
-            GenericAdapter adapter = new GenericAdapter<dtProducto>(getActivity(), R.layout.item_producto_list, productos, dtProducto.class);
-
-            adapter.setMethodReference(R.id.tvNombreProducto, "getNombre");
-            adapter.setMethodReference(R.id.tvPrecioProducto, "getPrecio");
-
-            lvProductos.setAdapter(adapter);
-        }
-        catch (Exception e){
-            Toast.makeText(getActivity(), "Ocurrió un error al cargar los productos", Toast.LENGTH_LONG).show();
-        }
-
+    void onCatSelected(String categoria) {
+        new GetProductosAsync().execute(categoria);
     }
 
     public interface OnProductoSelectedListener{
         void onProductoSelected(dtProducto producto);
     }
+
+
+    class GetProductosAsync extends AsyncTask<String, Void, List<dtProducto>> {
+
+        @Override
+        protected List<dtProducto> doInBackground(String... strings) {
+            return DataProducto.getProductos(getActivity(), strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(List<dtProducto> productos) {
+            try {
+                GenericAdapter adapter = new GenericAdapter<dtProducto>(getActivity(), R.layout.item_producto_list, productos, dtProducto.class);
+
+                adapter.setMethodReference(R.id.tvNombreProducto, "getNombre");
+                adapter.setMethodReference(R.id.tvPrecioProducto, "getPrecio");
+                adapter.setMethodReference(R.id.tvDescProducto_item, "getDescripcion");
+
+                lvProductos.setAdapter(adapter);
+            }
+            catch (Exception e){
+                Toast.makeText(getActivity(), "Ocurrió un error al cargar los productos", Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
 
 }

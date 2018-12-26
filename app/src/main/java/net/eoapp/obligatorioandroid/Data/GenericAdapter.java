@@ -25,23 +25,17 @@ public class GenericAdapter<T> extends BaseAdapter
 
     Map<Integer, Method> metodos = null;
 
-    public GenericAdapter(Context context, int layout, List<T> objetos, Class type) throws Exception{
-        try {
-            this.context = context;
-            this.objetos = objetos;
+    public GenericAdapter(Context context, int layout, List<T> objetos, Class type){
+        this.context = context;
+        this.objetos = objetos;
 
-            this.layout = layout;
-            c = type;
+        this.layout = layout;
+        this.c = type;
 
-            metodos = new HashMap();
-        }
-        catch(Exception e)
-        {
-            throw e;
-        }
+        metodos = new HashMap();
     }
 
-    public void setMethodReference(int view, String method) throws Exception{
+    public void setMethodReference(int view, String method) throws Exception {
         try{
             if (!metodos.containsKey(view))
                 metodos.put(view, c.getMethod(method));

@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import net.eoapp.obligatorioandroid.EntidadesCompartidas.Constantes;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
 import java.io.FileReader;
@@ -21,7 +22,7 @@ public class activityDetalleProducto extends AppCompatActivity {
 
 
         Bundle extras = getIntent().getExtras();
-        producto = (dtProducto)extras.getSerializable(MainActivity.PRODUCTO_SELECTED);
+        producto = (dtProducto)extras.getSerializable(Constantes.PRODUCTO_SELECTED);
 
 
     }
