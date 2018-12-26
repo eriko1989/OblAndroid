@@ -69,7 +69,6 @@ public class DetalleProductoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 listener.onCompraClick(producto);
-
             }
         });
 

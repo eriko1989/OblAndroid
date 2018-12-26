@@ -1,5 +1,6 @@
 package net.eoapp.obligatorioandroid;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements  ProductosFragmen
         frgCompraProducto = new CompraProductoFragment();
 
         changeFragment(Constantes.DETALLE_PRODUCTO, false);
-
     }
 
 
@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity implements  ProductosFragmen
             detalleFragment.mostrarProducto(producto);
         }
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,17 +69,24 @@ public class MainActivity extends AppCompatActivity implements  ProductosFragmen
     }
 
 
+
     public void changeFragment(String constante, boolean addToBackStack)
     {
-        Fragment fragmentToView = Constantes.COMPRA_PRODUCTO == constante ? frgCompraProducto : detalleFragment;
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        transaction.replace(R.id.frlZonaIntercambioMain, fragmentToView);
-        if (addToBackStack) {
-            transaction.addToBackStack(fragmentToView.getClass().getSimpleName());
-        }
+        int scree = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
 
-        transaction.commit();
+        if ((scree == Configuration.SCREENLAYOUT_SIZE_XLARGE || scree == Configuration.SCREENLAYOUT_SIZE_LARGE)
+                && getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+            Fragment fragmentToView = detalleFragment;
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            transaction.replace(R.id.frlZonaIntercambioMain, fragmentToView);
+            if (addToBackStack) {
+                transaction.addToBackStack(fragmentToView.getClass().getSimpleName());
+            }
+
+            transaction.commit();
+        }
     }
 
 
