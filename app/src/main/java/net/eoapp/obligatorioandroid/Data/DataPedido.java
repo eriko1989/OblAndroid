@@ -46,4 +46,40 @@ public class DataPedido {
 
         return  pedidos;
     }
+
+
+    public static List<String> getNombres(Context context){
+        SQLiteDatabase db = BioOpenHelper.getDB(context);
+        Cursor cursor = null;
+        List<String> nombres = new ArrayList();
+
+        try {
+
+            cursor = db.query(true, BioDataBase.PEDIDO,
+                    new String[]{BioDataBase.tblProducto.COL_NOMBRE},
+                    null,
+                    null,
+                    null,
+                    null,
+                    BioDataBase.tblProducto.COL_NOMBRE, null);
+
+
+            while (cursor.moveToNext()) {
+                nombres.add(cursor.getString(0));
+            }
+
+
+        }
+        catch (Exception e){
+            Log.e(Constantes.ERROR_DB, e.getMessage());
+        }
+        finally {
+            if (cursor != null) cursor.close();
+            if (db != null && db.isOpen()) db.close();
+        }
+
+        return nombres;
+    }
+
+
 }

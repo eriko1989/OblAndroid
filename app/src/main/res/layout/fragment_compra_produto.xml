@@ -3,10 +3,110 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:paddingTop="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Funciona"
-        android:id="@+id/tvPrueba"/>
+        android:orientation="vertical">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:id="@+id/ivImagen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/images"
+                android:maxHeight="150dp"
+                android:maxWidth="1500dp"
+                android:minHeight="150dp"
+                android:minWidth="150dp"
+                android:adjustViewBounds="true"
+                />
+
+            <LinearLayout
+                android:paddingLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:paddingBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Codigo"
+                    android:textSize="15sp"
+                    android:id="@+id/tvCodigo"/>
+
+                <TextView
+                    android:paddingBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:id="@+id/tvCategoria"
+                    android:hint="Categoria"
+                    />
+
+                <TextView
+                    android:paddingBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:id="@+id/tvNombre"
+                    android:hint="Nombre"
+                    />
+
+                <TextView
+                    android:paddingBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:id="@+id/tvPrecio"
+                    android:hint="Precio"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Ingrese cantidad"
+            android:paddingLeft="20dp"
+            />
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese Nombre"
+            android:id="@+id/atvNombre"
+            android:paddingLeft="20dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prepago"
+                    android:padding="20dp"
+                    android:id="@+id/cbPrepago"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnComprar"
+                    android:text="Confirmar compra!"
+                    android:onClick="btnConfirmarCompra"/>
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

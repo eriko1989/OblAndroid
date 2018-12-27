@@ -47,6 +47,9 @@ public class DataProducto {
         return categorias;
     }
 
+
+
+
     public static List<dtProducto> getProductos(Context context, String cat){
         SQLiteDatabase db = BioOpenHelper.getDB(context);
         Cursor cursor = null;
