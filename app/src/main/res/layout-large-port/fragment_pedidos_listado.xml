@@ -3,25 +3,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="10dp"
     >
 
-    <EditText
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/etCliente"
-        android:hint="Ingrese cliente..."
-        android:singleLine="true"
-        android:inputType="text"
-        android:textSize="28sp"
-        android:imeActionId="6969"
-        android:imeActionLabel="Listo"
-        />
+        android:layout_height="match_parent">
 
-    <ListView
-        android:layout_below="@id/etCliente"
-        android:id="@+id/lvPedidos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/item_listado_pedido">
-    </ListView>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:id="@+id/etCliente"
+            android:hint="Ingrese cliente..."
+            android:singleLine="true"
+            android:inputType="text"
+            android:imeActionId="6969"
+            android:imeActionLabel="Listo"
+            />
+
+        <ListView
+            android:id="@+id/lvPedidos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="50dp"
+            tools:listitem="@layout/item_listado_pedido">
+        </ListView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
+
+            <TextView
+                android:textSize="26sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total: " />
+
+            <TextView
+                android:id="@+id/tv_total_lista_pedido"
+                android:textSize="32sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0.00 " />
+
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>

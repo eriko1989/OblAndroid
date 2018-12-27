@@ -2,6 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,13 +18,37 @@ android:layout_width="match_parent" android:layout_height="match_parent">
         android:inputType="text"
         android:imeActionId="6969"
         android:imeActionLabel="Listo"
-        android:focusedByDefault="false"/>
+/>
 
     <ListView
-        android:layout_below="@id/etCliente"
         android:id="@+id/lvPedidos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="50dp"
         tools:listitem="@layout/item_listado_pedido">
     </ListView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+        <TextView
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: " />
+
+        <TextView
+            android:id="@+id/tv_total_lista_pedido"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0.00" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>
