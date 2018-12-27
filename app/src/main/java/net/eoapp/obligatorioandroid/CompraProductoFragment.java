@@ -18,6 +18,7 @@ import net.eoapp.obligatorioandroid.Data.DataPedido;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtPedido;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 public class CompraProductoFragment extends Fragment {
@@ -95,15 +96,15 @@ public class CompraProductoFragment extends Fragment {
 
                 etCantidad = (EditText) getView().findViewById(R.id.etCantidad);
                 int cantidad = Integer.parseInt(String.valueOf(etCantidad.getText()));
-                etCliente = (EditText) getView().findViewById(R.id.etCliente);
-                String cliente = String.valueOf(etCliente.getText());
+                etCliente = (EditText) getView().findViewById(R.id.atvNombre);
+                String cliente = String.valueOf(etCliente.getText().toString());
                 chkPrepago = (CheckBox)getView().findViewById(R.id.cbPrepago);
                 boolean prepago = chkPrepago.isChecked();
-                double total = (producto.getPrecio()*cantidad);
+                double total = Math.round(producto.getPrecio()*cantidad);
 
-                String s = new Date().toString();
+                String fecha = android.text.format.DateFormat.format("dd/MM/yyyy HH:mm", new java.util.Date()).toString();
 
-                pedido = new dtPedido(producto, cantidad,false,prepago,cliente, new Date().toString(),0, total);
+                pedido = new dtPedido(producto, cantidad,false,prepago,cliente, fecha,0, total);
 
                 listener.onConfirmarListener(pedido);
             }

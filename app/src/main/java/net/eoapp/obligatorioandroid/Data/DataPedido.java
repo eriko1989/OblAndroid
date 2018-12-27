@@ -1,5 +1,6 @@
 package net.eoapp.obligatorioandroid.Data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -79,4 +80,21 @@ public class DataPedido {
 
         return  pedidos;
     }
+
+    public static void setEntrega(Context context, int id){
+        SQLiteDatabase db = BioOpenHelper.getDB(context);
+
+        try{
+            ContentValues values = new ContentValues();
+            values.put(BioDataBase.tblPedido.COL_ENTREGADO, 1);
+
+            db.update(BioDataBase.PEDIDO,values,BioDataBase.tblPedido._ID + " = " + id , null);
+        }catch (Exception e){
+            Log.e(Constantes.ERROR_DB,e.getMessage());
+        }
+        finally {
+            if (db != null && db.isOpen()) db.close();
+        }
+    }
+
 }

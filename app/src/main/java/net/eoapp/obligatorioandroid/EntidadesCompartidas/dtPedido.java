@@ -28,7 +28,7 @@ public class dtPedido implements Serializable {
     }
 
     public dtPedido(dtProducto elProducto, int cantidad, boolean entregado, boolean prepagado, String cliente, String fecha, int id, double total) {
-        this.id = 0;
+        this.id = id;
         this.elProducto = elProducto;
         this.cantidad = cantidad;
         this.total = total;
