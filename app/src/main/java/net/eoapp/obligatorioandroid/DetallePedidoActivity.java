@@ -4,11 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import net.eoapp.obligatorioandroid.Data.DataPedido;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.Constantes;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtPedido;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
-public class DetallePedidoActivity extends AppCompatActivity implements PedidoDetalleFragment.OnEntregarPedidoListener {
+public class DetallePedidoActivity extends AppCompatActivity implements PedidoDetalleFragment.OnEntregarPedidoListener, CompraProductoFragment.onConfirmarListener {
 
     dtPedido pedido;
     PedidoDetalleFragment fgDetallePedido;
@@ -33,5 +34,14 @@ public class DetallePedidoActivity extends AppCompatActivity implements PedidoDe
     @Override
     public void onEntregarPedido(dtPedido pedido) {
 
+    }
+
+    @Override
+    public void onConfirmarListener(dtPedido pedido) {
+        try {
+            DataPedido.setPedido(this, pedido);
+        }catch (Exception e){
+            Toast.makeText(this,"Error al confirmar la compra", Toast.LENGTH_LONG).show();
+        }
     }
 }
