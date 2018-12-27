@@ -32,6 +32,7 @@ public class ListadoPedidosFragment extends Fragment {
 
     ListView lvPedidos;
     EditText etCliente;
+    TextView tvTotal;
 
     protected ListadoPedidosFragment.OnPedidoSelectedListener listener;
 
@@ -63,6 +64,7 @@ public class ListadoPedidosFragment extends Fragment {
 
         etCliente = (EditText) getActivity().findViewById(R.id.etCliente);
         lvPedidos = (ListView) getActivity().findViewById(R.id.lvPedidos);
+        tvTotal = (TextView) getActivity().findViewById(R.id.tv_total_lista_pedido);
 
         etCliente.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
@@ -86,6 +88,10 @@ public class ListadoPedidosFragment extends Fragment {
         new getPedidos().execute("");
     }
 
+
+    public void refresh(){
+        new getPedidos().execute(etCliente.getText().toString().trim());
+    }
 
     public interface OnPedidoSelectedListener {
         void onPedidoSelected(dtPedido producto);
@@ -115,6 +121,13 @@ public class ListadoPedidosFragment extends Fragment {
                 adapter.setMethodReference(R.id.tv_fecha_pedido_item, "getFecha");
 
                 lvPedidos.setAdapter(adapter);
+
+                double total = 0;
+                for(dtPedido p : pedidos){
+                    total += p.getTotal();
+                }
+
+                tvTotal.setText(String.valueOf(Math.round(total)));
             }
             catch (Exception e){
                 Toast.makeText(getActivity(), "Ocurrió un error al cargar los pedidos", Toast.LENGTH_LONG).show();
