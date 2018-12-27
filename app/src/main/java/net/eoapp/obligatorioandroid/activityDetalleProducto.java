@@ -4,14 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.Constantes;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
-import java.io.FileReader;
-
-public class activityDetalleProducto extends AppCompatActivity implements DetalleProductoFragment.btnComprarInterface{
+public class activityDetalleProducto extends AppCompatActivity implements DetalleProductoFragment.onComprarListener {
 
     dtProducto producto;
     DetalleProductoFragment frgDetalleProducto;

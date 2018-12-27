@@ -23,12 +23,12 @@ public class DataPedido {
         try {
 
             cursor = db.query(true, BioDataBase.PEDIDO,
-                    new String[]{BioDataBase.tblProducto.COL_NOMBRE},
+                    new String[]{BioDataBase.tblPedido.COL_CLIENTE},
                     null,
                     null,
                     null,
                     null,
-                    BioDataBase.tblProducto.COL_NOMBRE, null);
+                    BioDataBase.tblPedido.COL_CLIENTE, null);
 
 
             while (cursor.moveToNext()) {

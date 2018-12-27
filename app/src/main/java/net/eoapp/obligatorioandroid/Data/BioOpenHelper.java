@@ -47,6 +47,8 @@ public class BioOpenHelper extends SQLiteOpenHelper {
         //_ID, COL_ID_PRODUCTO, COL_CANTIDAD,COL_TOTAL,COL_ENTREGADO,COL_CLIENTE
         sqLiteDatabase.execSQL(new StringBuilder("INSERT INTO ").append(BioDataBase.PEDIDO)
                 .append(" VALUES (null, 0, 1, 299.99, 0, 1, 'Pedro Picapiedra', '25/12/2018 14:58:00');").toString());
+        sqLiteDatabase.execSQL(new StringBuilder("INSERT INTO ").append(BioDataBase.PEDIDO)
+                .append(" VALUES (null, 0, 1, 299.99, 0, 1, 'Juan Antonio', '25/12/2018 14:58:00');").toString());
     }
 
     @Override

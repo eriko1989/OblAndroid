@@ -1,25 +1,19 @@
 package net.eoapp.obligatorioandroid;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Toast;
 
-import net.eoapp.obligatorioandroid.Data.BioOpenHelper;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.Constantes;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
 
-public class MainActivity extends AppCompatActivity implements  ProductosFragment.OnProductoSelectedListener, DetalleProductoFragment.btnComprarInterface {
+public class MainActivity extends AppCompatActivity implements  ProductosFragment.OnProductoSelectedListener, DetalleProductoFragment.onComprarListener {
 
     ProductosFragment productosFragment;
     DetalleProductoFragment detalleFragment;

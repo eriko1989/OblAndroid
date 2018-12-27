@@ -11,10 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.eoapp.obligatorioandroid.EntidadesCompartidas.Constantes;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
-
-import org.w3c.dom.Text;
 
 public class DetalleProductoFragment extends Fragment {
 
@@ -26,14 +23,14 @@ public class DetalleProductoFragment extends Fragment {
     TextView tvPrecio;
     ImageView ivFoto;
     Button btnComprar;
-    btnComprarInterface listener;
+    onComprarListener listener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if (context instanceof btnComprarInterface){
-            listener = (btnComprarInterface)context;
+        if (context instanceof onComprarListener){
+            listener = (onComprarListener)context;
         }
     }
 
@@ -74,7 +71,7 @@ public class DetalleProductoFragment extends Fragment {
 
     }
 
-    public interface btnComprarInterface{
+    public interface onComprarListener {
 
             void onCompraClick(dtProducto producto);
 
