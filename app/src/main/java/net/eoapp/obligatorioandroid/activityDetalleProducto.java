@@ -67,6 +67,9 @@ public class activityDetalleProducto extends AppCompatActivity implements Detall
         try {
                 DataPedido.setPedido(this, pedido);
                 Toast.makeText(this, "Compra confirmada!", Toast.LENGTH_LONG).show();
+
+                //TODO: volver al listado de articulos
+
             }catch (Exception e){
                 Toast.makeText(this,"Error al confirmar la compra.", Toast.LENGTH_LONG).show();
             }
