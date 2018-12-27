@@ -13,6 +13,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class CompraProductoFragment extends Fragment {
     TextView tvCategoria;
     TextView tvNombre;
     TextView tvPrecio;
+    ImageView ivFoto;
     EditText etCantidad;
     dtProducto producto;
     AutoCompleteTextView atvNombre;
@@ -75,6 +77,11 @@ public class CompraProductoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        ivFoto = (ImageView) getActivity().findViewById(R.id.ivImagen);
+
+        if (producto.getIdFoto() != 0)
+            ivFoto.setImageResource(producto.getIdFoto());
 
        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1,DataPedido.getNombres(getContext()));

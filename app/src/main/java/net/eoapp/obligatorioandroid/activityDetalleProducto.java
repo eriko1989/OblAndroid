@@ -36,12 +36,13 @@ public class activityDetalleProducto extends AppCompatActivity implements Detall
     protected void onStart() {
         super.onStart();
 
-        if(producto != null) frgDetalleProducto.mostrarProducto(producto);
+        if(producto != null &&
+            frgDetalleProducto != null &&
+            frgDetalleProducto.isAdded()) frgDetalleProducto.mostrarProducto(producto);
     }
 
+    public void changeFragment(String constante, boolean addToBackStack) {
 
-    public void changeFragment(String constante, boolean addToBackStack)
-    {
         Fragment fragmentToView = Constantes.COMPRA_PRODUCTO == constante ? frgCompraProducto : frgDetalleProducto;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
