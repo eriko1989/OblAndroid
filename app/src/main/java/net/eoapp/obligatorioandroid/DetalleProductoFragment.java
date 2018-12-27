@@ -72,6 +72,12 @@ public class DetalleProductoFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (producto != null) mostrarProducto(producto);
+    }
+
     public interface onComprarListener {
 
             void onCompraClick(dtProducto producto);
