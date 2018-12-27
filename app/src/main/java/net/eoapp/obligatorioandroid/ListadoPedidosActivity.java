@@ -51,6 +51,16 @@ public class ListadoPedidosActivity extends AppCompatActivity implements Listado
 
     @Override
     public void onEntregarPedido(dtPedido pedido) {
-        //Marcar como entregado
+        DataPedido.setEntrega(this, pedido.getId());
+
+        Toast.makeText(this, "Pedido entregado", Toast.LENGTH_LONG).show();
+
+        fgListadoPedidos.refresh();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fgListadoPedidos.refresh();
     }
 }

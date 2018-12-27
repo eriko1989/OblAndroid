@@ -33,7 +33,11 @@ public class DetallePedidoActivity extends AppCompatActivity implements PedidoDe
 
     @Override
     public void onEntregarPedido(dtPedido pedido) {
+        DataPedido.setEntrega(this, pedido.getId());
 
+        Toast.makeText(this, "Pedido Nº " + pedido.getId() + " entregado", Toast.LENGTH_LONG).show();
+
+        finish();
     }
 
     @Override
