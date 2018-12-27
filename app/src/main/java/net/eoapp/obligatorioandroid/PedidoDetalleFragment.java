@@ -91,7 +91,19 @@ public class PedidoDetalleFragment extends Fragment {
         tv_cantidad.setText(String.valueOf(pedido.getCantidad()));
         tv_monto.setText(String.valueOf(pedido.getTotal()));
         tv_pago.setText(pedido.isPrepagado() ? "Si" : "No");
-}
+    }
+
+    public void clean(){
+        this.pedido = null;
+
+        tv_id.setText("");
+        tv_cliente.setText("");
+        tv_fecha.setText("");
+        tv_producto.setText("");
+        tv_cantidad.setText("");
+        tv_monto.setText("");
+        tv_pago.setText("");
+    }
 
     public interface OnEntregarPedidoListener{
         void onEntregarPedido(dtPedido pedido);

@@ -127,7 +127,10 @@ public class ListadoPedidosFragment extends Fragment {
                     total += p.getTotal();
                 }
 
-                tvTotal.setText(String.valueOf(Math.round(total)));
+                total = Math.round(total*100);
+                total = total / 100;
+
+                tvTotal.setText(String.valueOf(total));
             }
             catch (Exception e){
                 Toast.makeText(getActivity(), "Ocurrió un error al cargar los pedidos", Toast.LENGTH_LONG).show();

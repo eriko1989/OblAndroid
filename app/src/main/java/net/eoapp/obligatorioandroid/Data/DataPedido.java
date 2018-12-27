@@ -54,7 +54,7 @@ public class DataPedido {
         Cursor cursor = null;
         List<dtPedido> pedidos = new ArrayList();
         try{
-            cursor = db.query(BioDataBase.PEDIDO,BioDataBase.tblPedido.COLUMNAS,BioDataBase.tblPedido.COL_CLIENTE + " LIKE '%"+ cliente +"%' " , null,null,null,BioDataBase.tblPedido._ID);
+            cursor = db.query(BioDataBase.PEDIDO,BioDataBase.tblPedido.COLUMNAS,BioDataBase.tblPedido.COL_CLIENTE + " LIKE '%"+ cliente +"%' AND " + BioDataBase.tblPedido.COL_ENTREGADO + " = 0", null,null,null,BioDataBase.tblPedido._ID);
             while (cursor.moveToNext())
             {
                 dtProducto prod = DataProducto.getProducto(context, cursor.getInt(cursor.getColumnIndex(BioDataBase.tblPedido.COL_ID_PRODUCTO)));

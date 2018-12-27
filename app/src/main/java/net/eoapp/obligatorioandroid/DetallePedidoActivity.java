@@ -9,7 +9,7 @@ import net.eoapp.obligatorioandroid.EntidadesCompartidas.Constantes;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtPedido;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
-public class DetallePedidoActivity extends AppCompatActivity implements PedidoDetalleFragment.OnEntregarPedidoListener, CompraProductoFragment.onConfirmarListener {
+public class DetallePedidoActivity extends AppCompatActivity implements PedidoDetalleFragment.OnEntregarPedidoListener{
 
     dtPedido pedido;
     PedidoDetalleFragment fgDetallePedido;
@@ -26,26 +26,22 @@ public class DetallePedidoActivity extends AppCompatActivity implements PedidoDe
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart(){
         super.onStart();
         if (pedido != null) fgDetallePedido.cargarPedido(pedido);
     }
 
     @Override
     public void onEntregarPedido(dtPedido pedido) {
-        DataPedido.setEntrega(this, pedido.getId());
+        try{
+            DataPedido.setEntrega(this, pedido.getId());
 
-        Toast.makeText(this, "Pedido Nº " + pedido.getId() + " entregado", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Pedido Nº " + pedido.getId() + " entregado", Toast.LENGTH_LONG).show();
 
-        finish();
-    }
-
-    @Override
-    public void onConfirmarListener(dtPedido pedido) {
-        try {
-            DataPedido.setPedido(this, pedido);
-        }catch (Exception e){
-            Toast.makeText(this,"Error al confirmar la compra", Toast.LENGTH_LONG).show();
+            finish();
+        }
+        catch (Exception e){
+            Toast.makeText(this, "Ocurrió un error al entregar el pedido", Toast.LENGTH_LONG).show();
         }
     }
 }
