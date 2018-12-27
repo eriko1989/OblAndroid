@@ -97,4 +97,26 @@ public class DataPedido {
         }
     }
 
+    public static void setPedido(Context context, dtPedido pedido){
+        SQLiteDatabase db = BioOpenHelper.getDB(context);
+
+        try{
+            ContentValues values = new ContentValues();
+                values.put(BioDataBase.tblPedido.COL_FECHA, pedido.getFecha());
+            values.put(BioDataBase.tblPedido.COL_ID_PRODUCTO,pedido.getElProducto().getIdProducto());
+            values.put(BioDataBase.tblPedido.COL_TOTAL,pedido.getTotal());
+            values.put(BioDataBase.tblPedido.COL_CLIENTE, pedido.getCliente());
+            values.put(BioDataBase.tblPedido.COL_CANTIDAD, pedido.getCantidad());
+            values.put(BioDataBase.tblPedido.COL_PREPAGADO, pedido.isPrepagado());
+            values.put(BioDataBase.tblPedido.COL_ENTREGADO, 0);
+
+            db.insert(BioDataBase.PEDIDO,null, values);
+        }catch (Exception e){
+            Log.e(Constantes.ERROR_DB,e.getMessage());
+        }
+        finally {
+            if (db != null && db.isOpen()) db.close();
+        }
+    }
+
 }

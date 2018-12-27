@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.eoapp.obligatorioandroid.Data.DataPedido;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtPedido;
@@ -87,26 +88,30 @@ public class CompraProductoFragment extends Fragment {
         tvCodigo.setText(String.valueOf(producto.getIdProducto()));
         tvCodigo.setEnabled(false);
 
-
+        etCantidad = (EditText) getView().findViewById(R.id.etCantidad);
+        etCliente = (EditText) getView().findViewById(R.id.atvNombre);
+        chkPrepago = (CheckBox)getView().findViewById(R.id.cbPrepago);
 
         btnConfirmar = (Button)getView().findViewById(R.id.btnConfirmar);
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                etCantidad = (EditText) getView().findViewById(R.id.etCantidad);
                 int cantidad = Integer.parseInt(String.valueOf(etCantidad.getText()));
-                etCliente = (EditText) getView().findViewById(R.id.atvNombre);
                 String cliente = String.valueOf(etCliente.getText().toString());
-                chkPrepago = (CheckBox)getView().findViewById(R.id.cbPrepago);
                 boolean prepago = chkPrepago.isChecked();
                 double total = Math.round(producto.getPrecio()*cantidad);
-
                 String fecha = android.text.format.DateFormat.format("dd/MM/yyyy HH:mm", new java.util.Date()).toString();
 
                 pedido = new dtPedido(producto, cantidad,false,prepago,cliente, fecha,0, total);
 
-                listener.onConfirmarListener(pedido);
+                if (producto == null || pedido == null || cantidad == 0 || cliente == ""){
+                    Toast.makeText(getContext(),"Verificar datos", Toast.LENGTH_LONG).show();
+                }else {
+                    listener.onConfirmarListener(pedido);
+                }
+
+
             }
         });
 

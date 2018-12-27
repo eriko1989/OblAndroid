@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
+import net.eoapp.obligatorioandroid.Data.BioOpenHelper;
+import net.eoapp.obligatorioandroid.Data.DataPedido;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.Constantes;
+import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtPedido;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
 
-public class MainActivity extends AppCompatActivity implements  ProductosFragment.OnProductoSelectedListener, DetalleProductoFragment.onComprarListener {
+public class MainActivity extends AppCompatActivity implements  ProductosFragment.OnProductoSelectedListener, DetalleProductoFragment.onComprarListener, CompraProductoFragment.onConfirmarListener {
 
     ProductosFragment productosFragment;
     DetalleProductoFragment detalleFragment;
@@ -89,5 +93,15 @@ public class MainActivity extends AppCompatActivity implements  ProductosFragmen
 
         frgCompraProducto.setProducto(producto);
         this.changeFragment(Constantes.COMPRA_PRODUCTO, true);
+    }
+
+    @Override
+    public void onConfirmarListener(dtPedido pedido) {
+        try {
+            DataPedido.setPedido(this, pedido);
+        }catch (Exception e){
+            Toast.makeText(this,"Error al confirmar la compra", Toast.LENGTH_LONG).show();
+        }
+
     }
 }
