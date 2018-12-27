@@ -34,7 +34,6 @@ public class ListadoPedidosActivity extends AppCompatActivity implements Listado
 
     }
 
-
     @Override
     public void onPedidoSelected(dtPedido producto) {
         Toast.makeText(this, "Llamar a fragment detalle ", Toast.LENGTH_LONG).show();

@@ -22,8 +22,7 @@ public class DataPedido {
             cursor = db.query(BioDataBase.PEDIDO,BioDataBase.tblPedido.COLUMNAS,BioDataBase.tblPedido.COL_CLIENTE + " LIKE '%"+ cliente +"%' " , null,null,null,BioDataBase.tblPedido._ID);
             while (cursor.moveToNext())
             {
-                dtProducto prod = new dtProducto();
-                prod.setIdProducto(cursor.getInt(cursor.getColumnIndex(BioDataBase.tblPedido.COL_ID_PRODUCTO)));
+                dtProducto prod = DataProducto.getProducto(context, cursor.getInt(cursor.getColumnIndex(BioDataBase.tblPedido.COL_ID_PRODUCTO)));
 
                 pedidos.add(new dtPedido(
                         prod,

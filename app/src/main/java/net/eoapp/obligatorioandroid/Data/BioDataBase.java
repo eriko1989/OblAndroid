@@ -17,17 +17,16 @@ public final class BioDataBase{
 
     public static abstract class tblProducto implements BaseColumns {
 
-        public static final String COL_CODIGO = "Codigo";
         public static final String COL_CATEGORIA = "Categoria";
         public static final String COL_NOMBRE = "Nombre";
         public static final String COL_DESCRIPCION = "Descripcion";
         public static final String COL_ID_FOTO = "UrlFoto";
         public static final String COL_PRECIO = "Precio";
 
-        public static final String[] COLUMNAS = { COL_CODIGO, COL_CATEGORIA, COL_NOMBRE, COL_DESCRIPCION, COL_ID_FOTO, COL_PRECIO};
+        public static final String[] COLUMNAS = { _ID, COL_CATEGORIA, COL_NOMBRE, COL_DESCRIPCION, COL_ID_FOTO, COL_PRECIO};
 
         public static final String CREAR_TABLA = new StringBuilder("CREATE TABLE ").append(PRODUCTO).append(" (")
-                                                    .append(COL_CODIGO).append(" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ")
+                                                    .append(_ID).append(" INTEGER NOT NULL PRIMARY KEY, ")
                                                     .append(COL_CATEGORIA).append(" VARCHAR(50) NOT NULL, ")
                                                     .append(COL_NOMBRE).append(" VARCHAR(100) NOT NULL, ")
                                                     .append(COL_DESCRIPCION).append(" VARCHAR(300) NOT NULL, ")
@@ -64,7 +63,7 @@ public final class BioDataBase{
                 .append(COL_CLIENTE).append(" VARCHAR(200) NOT NULL, ")
                 .append(COL_FECHA).append(" VARCHAR(20) NOT NULL, ")
                 .append("FOREIGN KEY (").append(COL_ID_PRODUCTO).append(") REFERENCES ").append(PRODUCTO).append("(")
-                .append(tblProducto.COL_CODIGO).append(") ); " ).toString();
+                .append(tblProducto._ID).append(") ); " ).toString();
 
 
         public static final String ELIMINAR_TABLA = new StringBuilder("DROP TABLE IF EXISTS ").append(PEDIDO).append(" ;").toString();

@@ -4,14 +4,14 @@
     android:padding="10dp">
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="28sp"
         android:id="@+id/tv_id_pedido_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1"/>
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="28sp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/tv_id_pedido_item"
         android:id="@+id/tv_cliente_pedido_item"
@@ -20,8 +20,8 @@
         android:text="Pedro Picapiedra"/>
 
     <TextView
-        android:textSize="22sp"
         android:layout_centerVertical="true"
+        android:textSize="32sp"
         android:id="@+id/tv_monto_pedido_item"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
@@ -29,6 +29,7 @@
         android:text="100.99"/>
 
     <TextView
+        android:textSize="18sp"
         android:layout_below="@id/tv_id_pedido_item"
         android:id="@+id/label_fecha_pedido_item"
         android:layout_width="wrap_content"
@@ -36,6 +37,7 @@
         android:text="Fecha: "/>
 
     <TextView
+        android:textSize="18sp"
         android:layout_below="@id/tv_id_pedido_item"
         android:layout_toRightOf="@id/label_fecha_pedido_item"
         android:id="@+id/tv_fecha_pedido_item"

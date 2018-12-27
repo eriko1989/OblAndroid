@@ -52,12 +52,12 @@ public class DataProducto {
         Cursor cursor = null;
         List<dtProducto> productos = new ArrayList();
         try{
-            cursor = db.query(BioDataBase.PRODUCTO,BioDataBase.tblProducto.COLUMNAS,BioDataBase.tblProducto.COL_CATEGORIA + " = ? " , new String[]{cat},null,null,BioDataBase.tblProducto.COL_CODIGO);
+            cursor = db.query(BioDataBase.PRODUCTO,BioDataBase.tblProducto.COLUMNAS,BioDataBase.tblProducto.COL_CATEGORIA + " = ? " , new String[]{cat},null,null,BioDataBase.tblProducto.COL_NOMBRE);
             while (cursor.moveToNext())
             {
 
                 productos.add(new dtProducto(
-                        cursor.getInt(cursor.getColumnIndex(BioDataBase.tblProducto.COL_CODIGO)),
+                        cursor.getInt(cursor.getColumnIndex(BioDataBase.tblProducto._ID)),
                         cursor.getString(cursor.getColumnIndex(BioDataBase.tblProducto.COL_CATEGORIA)),
                         cursor.getString(cursor.getColumnIndex(BioDataBase.tblProducto.COL_NOMBRE)),
                         cursor.getString(cursor.getColumnIndex(BioDataBase.tblProducto.COL_DESCRIPCION)),
@@ -75,5 +75,32 @@ public class DataProducto {
         return  productos;
     }
 
+    public static dtProducto getProducto(Context context, int id){
+        SQLiteDatabase db = BioOpenHelper.getDB(context);
+        Cursor cursor = null;
+        dtProducto producto = null;
+        try{
+            cursor = db.query(BioDataBase.PRODUCTO,BioDataBase.tblProducto.COLUMNAS,BioDataBase.tblProducto._ID + " = ? " , new String[]{ String.valueOf(id) },null,null,null);
+            while (cursor.moveToNext()) {
+
+                producto = new dtProducto(
+                        cursor.getInt(cursor.getColumnIndex(BioDataBase.tblProducto._ID)),
+                        cursor.getString(cursor.getColumnIndex(BioDataBase.tblProducto.COL_CATEGORIA)),
+                        cursor.getString(cursor.getColumnIndex(BioDataBase.tblProducto.COL_NOMBRE)),
+                        cursor.getString(cursor.getColumnIndex(BioDataBase.tblProducto.COL_DESCRIPCION)),
+                        cursor.getInt(cursor.getColumnIndex(BioDataBase.tblProducto.COL_ID_FOTO)),
+                        cursor.getDouble(cursor.getColumnIndex(BioDataBase.tblProducto.COL_PRECIO))
+                );
+            }
+
+        }catch (Exception e){
+            Log.e(Constantes.ERROR_DB,e.getMessage());
+        }
+        finally {
+            if (cursor != null) cursor.close();
+            if (db != null && db.isOpen()) db.close();
+        }
+        return  producto;
+    }
 
 }
