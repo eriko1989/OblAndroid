@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.eoapp.obligatorioandroid.Data.DataProducto;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtPedido;
@@ -69,17 +70,20 @@ public class PedidoDetalleFragment extends Fragment {
 
         btn_entrgar = (Button) getActivity().findViewById(R.id.btn_entregar);
 
-
         btn_entrgar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                listener.onEntregarPedido(pedido);
+                if (pedido == null)
+                    Toast.makeText(getActivity(), "Seleccione un pedido", Toast.LENGTH_SHORT).show();
+                else
+                    listener.onEntregarPedido(pedido);
             }
         });
     }
 
-
     public void cargarPedido(dtPedido pedido){
+        this.pedido = pedido;
+
         tv_id.setText(String.valueOf(pedido.getId()));
         tv_cliente.setText(pedido.getCliente());
         tv_fecha.setText(pedido.getFecha());
@@ -87,8 +91,7 @@ public class PedidoDetalleFragment extends Fragment {
         tv_cantidad.setText(String.valueOf(pedido.getCantidad()));
         tv_monto.setText(String.valueOf(pedido.getTotal()));
         tv_pago.setText(pedido.isPrepagado() ? "Si" : "No");
-
-    }
+}
 
     public interface OnEntregarPedidoListener{
         void onEntregarPedido(dtPedido pedido);

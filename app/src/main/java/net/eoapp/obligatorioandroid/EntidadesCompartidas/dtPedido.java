@@ -1,8 +1,9 @@
 package net.eoapp.obligatorioandroid.EntidadesCompartidas;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class dtPedido {
+public class dtPedido implements Serializable {
 
     dtProducto elProducto;
     int id;
