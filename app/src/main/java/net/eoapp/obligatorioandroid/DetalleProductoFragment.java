@@ -37,6 +37,7 @@ public class DetalleProductoFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        listener = null;
     }
 
     @Override
