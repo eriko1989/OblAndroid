@@ -1,5 +1,6 @@
 package net.eoapp.obligatorioandroid;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -41,8 +42,17 @@ public class CompraProductoFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof CompraProductoFragment.onConfirmarListener)
+            listener = (CompraProductoFragment.onConfirmarListener)context;
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
+        listener = null;
     }
 
 
