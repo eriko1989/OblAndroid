@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements ProductosFragment
             DataPedido.setPedido(this, pedido);
             Toast.makeText(this, "Compra confirmada!", Toast.LENGTH_LONG).show();
 
-            changeFragment(Constantes.DETALLE_PRODUCTO, false);
+            onBackPressed();
         }catch (Exception e){
             Toast.makeText(this,"Error al confirmar la compra", Toast.LENGTH_LONG).show();
         }

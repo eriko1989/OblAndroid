@@ -23,7 +23,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/no_image"
                         android:maxHeight="150dp"
-                        android:maxWidth="1500dp"
+                        android:maxWidth="150dp"
                         android:minHeight="150dp"
                         android:minWidth="150dp"
                         android:adjustViewBounds="true"
@@ -83,14 +83,18 @@
             android:id="@+id/tvDescripcion"
             android:hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, lectus nec viverra egestas, justo elit tempus odio, a pretium lorem arcu et leo. Suspendisse ultrices mauris velit, at pulvinar sapien suscipit sit amet. Donec interdum tortor nisi, at varius velit accumsan vitae. Mor arime!!!"
             />
+
+
+    </LinearLayout>
+
+
     <Button
-        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnComprar"
         android:text="Comprar producto!"
         android:onClick="btnComprar"/>
-
-    </LinearLayout>
 
 
 </RelativeLayout>

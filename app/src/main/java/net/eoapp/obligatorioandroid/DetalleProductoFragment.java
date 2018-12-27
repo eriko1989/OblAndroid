@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
 
@@ -66,7 +67,10 @@ public class DetalleProductoFragment extends Fragment {
         btnComprar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onCompraClick(producto);
+                if (producto == null)
+                    Toast.makeText(getActivity(), "Seleccione un producto", Toast.LENGTH_LONG).show();
+                else
+                    listener.onCompraClick(producto);
             }
         });
 
@@ -79,9 +83,7 @@ public class DetalleProductoFragment extends Fragment {
     }
 
     public interface onComprarListener {
-
             void onCompraClick(dtProducto producto);
-
     }
 
     public void mostrarProducto(dtProducto producto) {
@@ -91,8 +93,9 @@ public class DetalleProductoFragment extends Fragment {
         tvDescripcion.setText(producto.getDescripcion());
         tvNombre.setText(producto.getNombre());
         tvPrecio.setText(String.valueOf(producto.getPrecio()));
-        // cargar imagen
 
+        if (producto.getIdFoto() != 0)
+            ivFoto.setImageResource(producto.getIdFoto());
     }
 
 
