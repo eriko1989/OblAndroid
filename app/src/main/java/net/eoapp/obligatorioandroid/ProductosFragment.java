@@ -26,7 +26,6 @@ import java.util.List;
 public class ProductosFragment extends Fragment {
 
     List<String> categrias;
-    SQLiteDatabase db;
     Spinner spinner;
     ListView lvProductos;
 

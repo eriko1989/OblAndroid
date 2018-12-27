@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etCliente"
+        android:hint="Ingrese cliente..."
+        android:singleLine="true"
+        android:inputType="text"
+        android:textSize="28sp"
+        android:imeActionId="6969"
+        android:imeActionLabel="Listo" />
+
+    <ListView
+        android:layout_below="@id/etCliente"
+        android:id="@+id/lvPedidos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_listado_pedido">
+    </ListView>
+</RelativeLayout>

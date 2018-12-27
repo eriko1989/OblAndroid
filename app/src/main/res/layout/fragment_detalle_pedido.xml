@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/label_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Número:"
+        />
+
+    <TextView
+        android:layout_toRightOf="@id/label_id"
+        android:id="@+id/tv_id_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="1" />
+
+
+
+    <TextView
+        android:layout_below="@id/label_id"
+        android:id="@+id/label_cliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cliente:" />
+
+    <TextView
+        android:layout_below="@id/label_id"
+        android:layout_toRightOf="@id/label_cliente"
+        android:id="@+id/tv_cliente_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Pedro" />
+
+
+    <TextView
+        android:layout_below="@id/label_cliente"
+        android:id="@+id/label_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha:" />
+
+    <TextView
+        android:layout_below="@id/label_cliente"
+        android:layout_toRightOf="@id/label_fecha"
+        android:id="@+id/tv_fecha_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="25/12/2018 14:58:00" />
+
+
+
+    <TextView
+        android:layout_below="@id/label_fecha"
+        android:id="@+id/label_producto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Producto:" />
+
+    <TextView
+        android:layout_below="@id/label_fecha"
+        android:layout_toRightOf="@id/label_producto"
+        android:id="@+id/tv_prodcuto_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Jabón de la descarga" />
+
+
+
+    <TextView
+        android:layout_below="@id/label_producto"
+        android:id="@+id/label_cantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cantidad:" />
+
+    <TextView
+        android:layout_below="@id/label_producto"
+        android:layout_toRightOf="@id/label_cantidad"
+        android:id="@+id/tv_cantidad_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="2" />
+
+
+
+
+    <TextView
+        android:layout_below="@id/label_cantidad"
+        android:id="@+id/label_monto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Monto:" />
+
+    <TextView
+        android:layout_below="@id/label_cantidad"
+        android:layout_toRightOf="@id/label_monto"
+        android:id="@+id/tv_monto_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="200.00" />
+
+
+
+
+    <TextView
+        android:layout_below="@id/label_monto"
+        android:id="@+id/label_pagado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pagado:" />
+
+    <TextView
+        android:layout_below="@id/label_monto"
+        android:layout_toRightOf="@id/label_pagado"
+        android:id="@+id/tv_pagado_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Si" />
+
+
+
+    <Button
+        android:id="@+id/btn_entregar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="ENTREGAR"
+        android:layout_alignParentBottom="true" />
+
+
+
+</RelativeLayout>
