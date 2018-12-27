@@ -29,7 +29,6 @@ public class CompraProductoFragment extends Fragment {
     TextView tvNombre;
     TextView tvPrecio;
     EditText etCantidad;
-    EditText etCliente;
     dtProducto producto;
     AutoCompleteTextView atvNombre;
     Button btnConfirmar;
@@ -89,7 +88,7 @@ public class CompraProductoFragment extends Fragment {
         tvCodigo.setEnabled(false);
 
         etCantidad = (EditText) getView().findViewById(R.id.etCantidad);
-        etCliente = (EditText) getView().findViewById(R.id.atvNombre);
+        atvNombre = (AutoCompleteTextView) getView().findViewById(R.id.atvNombre);
         chkPrepago = (CheckBox)getView().findViewById(R.id.cbPrepago);
 
         btnConfirmar = (Button)getView().findViewById(R.id.btnConfirmar);
@@ -98,7 +97,7 @@ public class CompraProductoFragment extends Fragment {
             public void onClick(View view) {
 
                 int cantidad = Integer.parseInt(String.valueOf(etCantidad.getText()));
-                String cliente = String.valueOf(etCliente.getText().toString());
+                String cliente = String.valueOf(atvNombre.getText().toString());
                 boolean prepago = chkPrepago.isChecked();
                 double total = Math.round(producto.getPrecio()*cantidad);
                 String fecha = android.text.format.DateFormat.format("dd/MM/yyyy HH:mm", new java.util.Date()).toString();
