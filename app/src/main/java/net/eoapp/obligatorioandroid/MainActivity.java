@@ -1,12 +1,14 @@
 package net.eoapp.obligatorioandroid;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.hardware.SensorManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.OrientationEventListener;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -31,16 +33,19 @@ public class MainActivity extends AppCompatActivity implements ProductosFragment
         detalleFragment = new DetalleProductoFragment();
         frgCompraProducto = new CompraProductoFragment();
 
-        changeFragment(Constantes.DETALLE_PRODUCTO, false);
+       changeFragment(Constantes.DETALLE_PRODUCTO, false);
     }
 
     @Override
     public void onProductoSelected(dtProducto producto) {
-        if (detalleFragment == null || !detalleFragment.isAdded()) {
+        if ((detalleFragment == null || !detalleFragment.isAdded()) &&
+                (frgCompraProducto == null || !frgCompraProducto.isAdded())) {
             Intent i = new Intent(getApplicationContext(), activityDetalleProducto.class);
             i.putExtra(Constantes.PRODUCTO_SELECTED, producto);
             startActivity(i);
         } else {
+            if (frgCompraProducto != null && frgCompraProducto.isAdded()) onBackPressed();
+
             detalleFragment.mostrarProducto(producto);
         }
     }
@@ -82,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements ProductosFragment
         }
 
     }
-
 
     public void changeFragment(String constante, boolean addToBackStack){
         int scree = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;

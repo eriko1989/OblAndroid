@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:id="@+id/tvDescripcion"
-            android:hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, lectus nec viverra egestas, justo elit tempus odio, a pretium lorem arcu et leo. Suspendisse ultrices mauris velit, at pulvinar sapien suscipit sit amet. Donec interdum tortor nisi, at varius velit accumsan vitae. Mor arime!!!"
+            android:hint="Descripción"
             />
 
 
@@ -93,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnComprar"
-        android:text="Comprar producto!"
+        android:text="COMPRAR PRODUCTO"
         android:onClick="btnComprar"/>
 
 

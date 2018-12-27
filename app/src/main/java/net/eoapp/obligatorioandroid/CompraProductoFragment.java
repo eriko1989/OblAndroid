@@ -77,6 +77,7 @@ public class CompraProductoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if (producto == null) return;
 
         ivFoto = (ImageView) getActivity().findViewById(R.id.ivImagen);
 
@@ -84,60 +85,56 @@ public class CompraProductoFragment extends Fragment {
             ivFoto.setImageResource(producto.getIdFoto());
 
        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_list_item_1,DataPedido.getNombres(getContext()));
+                android.R.layout.simple_list_item_1, DataPedido.getNombres(getContext()));
         atvNombre = (AutoCompleteTextView) getView().findViewById(R.id.atvNombre);
         atvNombre.setAdapter(adapter);
 
         tvCategoria = (TextView)getView().findViewById(R.id.tvCategoria);
-        tvCategoria.setText(producto.getCategoría());
-        tvCategoria.setEnabled(false);
+        if (tvCategoria != null) tvCategoria.setText(producto.getCategoría());
 
         tvNombre = (TextView)getView().findViewById(R.id.tvNombre);
-        tvNombre.setText(producto.getNombre());
-        tvNombre.setEnabled(false);
+        if (tvNombre != null) tvNombre.setText(producto.getNombre());
 
         tvPrecio = (TextView)getView().findViewById(R.id.tvPrecio);
-        tvPrecio.setText(String.valueOf(producto.getPrecio()));
-        tvPrecio.setEnabled(false);
+        if (tvPrecio != null) tvPrecio.setText(String.valueOf(producto.getPrecio()));
 
         tvCodigo = (TextView)getView().findViewById(R.id.tvCodigo);
-        tvCodigo.setText(String.valueOf(producto.getIdProducto()));
-        tvCodigo.setEnabled(false);
+        if (tvCodigo != null) tvCodigo.setText(String.valueOf(producto.getIdProducto()));
 
         etCantidad = (EditText) getView().findViewById(R.id.etCantidad);
         atvNombre = (AutoCompleteTextView) getView().findViewById(R.id.atvNombre);
         chkPrepago = (CheckBox)getView().findViewById(R.id.cbPrepago);
 
         btnConfirmar = (Button)getView().findViewById(R.id.btnConfirmar);
+
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                int cantidad = Integer.parseInt(String.valueOf(etCantidad.getText()));
-                String cliente = String.valueOf(atvNombre.getText().toString());
-                boolean prepago = chkPrepago.isChecked();
-                double total = Math.round(producto.getPrecio()*cantidad);
-                String fecha = android.text.format.DateFormat.format("dd/MM/yyyy HH:mm", new java.util.Date()).toString();
+                try {
 
-                pedido = new dtPedido(producto, cantidad,false,prepago,cliente, fecha,0, total);
+                    int cantidad = Integer.parseInt(etCantidad.getText().toString().trim() == "" ? "0" : etCantidad.getText().toString().trim());
+                    String cliente = String.valueOf(atvNombre.getText().toString().trim());
+                    boolean prepago = chkPrepago.isChecked();
+                    double total = Math.round((producto.getPrecio() * cantidad) * 100) / 100;
+                    String fecha = android.text.format.DateFormat.format("dd/MM/yyyy HH:mm", new java.util.Date()).toString();
+                    pedido = new dtPedido(producto, cantidad, false, prepago, cliente, fecha, 0, total);
 
-                if (producto == null || pedido == null || cantidad == 0 || cliente == ""){
-                    Toast.makeText(getContext(),"Verificar datos", Toast.LENGTH_LONG).show();
-                }else {
-                    listener.onConfirmarListener(pedido);
+                    if (producto == null || pedido == null || cantidad == 0 || cliente == "") {
+                        Toast.makeText(getContext(), "Verificar datos", Toast.LENGTH_LONG).show();
+                    } else {
+                        listener.onConfirmarListener(pedido);
+                    }
                 }
-
-
+                catch (Exception e){
+                    Toast.makeText(getContext(), "Verificar datos", Toast.LENGTH_LONG).show();
+                }
             }
         });
-
-
     }
 
     public interface onConfirmarListener {
-
         void onConfirmarListener(dtPedido pedido);
-
     }
 
 

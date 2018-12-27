@@ -1,6 +1,7 @@
 package net.eoapp.obligatorioandroid;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import net.eoapp.obligatorioandroid.Data.DataPedido;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.Constantes;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtPedido;
 import net.eoapp.obligatorioandroid.EntidadesCompartidas.dtProducto;
+
+import java.security.spec.ECField;
 
 public class activityDetalleProducto extends AppCompatActivity implements DetalleProductoFragment.onComprarListener, CompraProductoFragment.onConfirmarListener {
 
@@ -22,14 +25,13 @@ public class activityDetalleProducto extends AppCompatActivity implements Detall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_producto);
-        frgDetalleProducto = new DetalleProductoFragment(); //(DetalleProductoFragment)getSupportFragmentManager().findFragmentById(R.id.fgDetaleCompra);
-        frgCompraProducto= new CompraProductoFragment(); // (CompraProductoFragment)getSupportFragmentManager().findFragmentById(R.id.fgDetaleCompra);
+        frgDetalleProducto = new DetalleProductoFragment();
+        frgCompraProducto= new CompraProductoFragment();
 
         Bundle extras = getIntent().getExtras();
         producto = (dtProducto)extras.getSerializable(Constantes.PRODUCTO_SELECTED);
 
         changeFragment(Constantes.DETALLE_PRODUCTO, false);
-
     }
 
     @Override
